@@ -1,3 +1,4 @@
+from dataclasses import asdict
 import streamlit as st
 import numpy as np
 import pandas as pd
@@ -5,13 +6,13 @@ import gensim.downloader as api
 import tensorflow as tf
 
 from tensorflow.keras.models import load_model
-from NLPmoviereviews.main import predict_score
+from NLPmoviereviews.main import predict_score_1
 
 
 ################# MODEL ##################
 
 # parameters
-MODEL='saved_model/nlp_model/'
+MODEL='saved_model/nlp_1_model/'
 # MODEL='saved_model/bert_model/'
 
 
@@ -19,7 +20,6 @@ MODEL='saved_model/nlp_model/'
 #@st.cache
 def load_model_cache():
     model=load_model(MODEL)
-    #word2vec=api.load('glove-wiki-gigaword-100')
     return model
 
 model = load_model_cache()
@@ -35,10 +35,9 @@ st.set_page_config(
     initial_sidebar_state="auto",
 )
 
-# need to adapt style
-# with open('style.css') as f:
-#     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
+# CSS Styling changes
+with open('style.css') as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
 
 st.markdown("""
@@ -50,17 +49,28 @@ st.markdown("""
 
 st.header("Let's write a review")
 
-user_text = st.text_area('Add your review:', '''
-    ''')
+user_text = st.text_area("Add your review here and we'll predict how many stars you would give it:",
+                         '''This was a really amazing movie.''')
 
 if user_text is not None:
 
-    result = predict_score(model, user_text)
+    result = predict_score_1(model, user_text)
     # result = tf.sigmoid(model(tf.constant(user_text)))
 
-    # display sentiment
-    st.header('Prediction:')
-    if result <= 0.5:
-        st.error("Didn't like the movie")
-    elif result > 0.5:
-        st.success("Liked the movie")
+    # # display sentiment
+    # full_stars = round((result+0.1)*5)
+    # empty_stars = 5 - full_stars
+    # stars = ('★' * full_stars + '☆' * empty_stars)
+    # st.header(f'This is a {stars} review')
+
+
+    if result < 0.3 :
+        st.header(f'This is a ★☆☆☆☆ review')
+    elif result < 0.4 :
+        st.header(f'This is a ★★☆☆☆ review')
+    elif result < 0.6 :
+        st.header(f'This is a ★★★☆☆ review')
+    elif result < 0.8 :
+        st.header(f'This is a ★★★★☆ review')
+    else:
+        st.header(f'This is a ★★★★★ review')

@@ -9,9 +9,12 @@ EXPOSE 8501
 
 COPY NLPmoviereviews /NLPmoviereviews
 COPY app.py /app.py
+COPY style.css /style.css
+COPY images /images
 COPY setup.py /setup.py
 COPY scripts /scripts
 
+COPY tokenizer.pickle /tokenizer.pickle
 COPY saved_model /saved_model
 
 RUN pip install .

@@ -1,0 +1,52 @@
+/* Background color */
+.appview-container {
+  background: #ffeabf
+  /* background: #fff3e0 */
+}
+
+/* Header Image */
+header[data-testid="stHeader"] {
+  background: url('https://raw.githubusercontent.com/sridhar211/NLPmoviereviews/master/images/popcorn.jpeg');
+  height: 10.875rem
+}
+
+/* Main content placement */
+.block-container {
+  padding: 12rem 1rem 10rem
+}
+
+/* Dropdown button color */
+button[kind="header"] > svg {
+  fill: white
+}
+
+/* Dropdown button placement */
+@media (min-width: 576px) {
+  .block-container {
+    padding-left: 5rem;
+    padding-right: 5rem;
+  }
+}
+
+
+/* Title */
+.css-10trblm {
+  position: relative;
+  flex: 1 1 0%;
+  margin-left: calc(3rem);
+  color: #4f2e1f;
+}
+
+/* Text */
+p, ol, ul, dl {
+  margin: 0px 0px 1rem;
+  padding: 0px;
+  font-size: 1rem;
+  font-weight: 400;
+  color: #4f2e1f
+}
+
+/* Review Text
+.st-bw {
+  color: #1f1d1e;
+} */

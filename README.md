@@ -1,11 +1,14 @@
 # Data analysis
 - Description: Use ML/DL to perform sentiment anaylsis on movie reviews
 - Data Source: Tensorflow imdb reviews dataset
-- Type of analysis: Sentiment analysis model comparison
+- Type of analysis: A comparison of NLP models for sentiment analysis
 
-# Check it out
+# Medium article
 
 [Read more here](https://medium.com/@sridhargkumar11/a-comparison-of-sentiment-analysis-models-using-nlp-on-movie-reviews-980bde64c646)
+
+
+# Our webapp
 
 [Try the webapp here](https://nlp-movie-review-anffoy276a-ey.a.run.app/)
 
